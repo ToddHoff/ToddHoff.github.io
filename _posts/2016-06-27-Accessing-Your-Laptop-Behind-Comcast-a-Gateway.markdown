@@ -91,6 +91,20 @@ often this approach isn't all that bad. You get a nice domain name
 and it probably won't cost much because you are using your existing
 DNS service.
 
+# Becoming Your Own Proxy
+
+In the version instead of using Nginx your process acts as a proxy. If you are
+using node then there's http-proxy module that gets the job done. If 
+using express you just start a http and https web server. Then the https
+forwards requests on to http. 
+
+Advantage: this approach simplifies operations in that you just have one process
+to wortty about, 
+
+Disadvantage: using a separate process offloads work from your node server. Since
+node is single threaded shedding work off to different processes means your node
+process can spend more time doing your work instead of the proxy work.
+
 # Supporting SSL
 
 If your service must support https then you can:
